@@ -18,6 +18,10 @@ fractionOpenTimeSoundIsOn =1;
 fractionPenaltySoundIsOn  =1;
 scalar                    =1;
 msAirpuff                 =msPenalty;
+stim.slowSecs = 1;
+pixPerCycs             = [350]; %*10^9;
+targetOrientations     = 0
+distractorOrientations = []; %-targetOrientations;
 
 % sca
 % keyboard
@@ -49,36 +53,7 @@ switch subjIDs{1}
   % case 'g54a11tt'
    %     requestRewardSizeULorMS = 0;
     %    rewardSizeULorMS        = 100;
-  % case 'gcam35lt'
-   %     requestRewardSizeULorMS = 0;
-    %    rewardSizeULorMS        = 100;
-   %case 'gcam39rt'
-    %    requestRewardSizeULorMS = 0;
-    %    rewardSizeULorMS        = 100;
-   %case 'gcam39tt'
-    %    requestRewardSizeULorMS = 0;
-     %   rewardSizeULorMS        = 100;
-   %case 'gcam53rt'
-    %    requestRewardSizeULorMS = 0;
-    %    rewardSizeULorMS        = 100;
-   %case 'gcam53ln'
-    %    requestRewardSizeULorMS = 0;
-     %   rewardSizeULorMS        = 100;
-  % case 'gcam43lt'
-   %     requestRewardSizeULorMS = 0;
-    %    rewardSizeULorMS        = 100;
-   %case 'gcam43rt'
-    %    requestRewardSizeULorMS = 0;
-    %    rewardSizeULorMS        = 100;
-   %case 'gcam45tt'
-    %    requestRewardSizeULorMS = 0;
-     %   rewardSizeULorMS        = 100;
-   %case 'gcam40lt'
-    %    requestRewardSizeULorMS = 0;
-    %    rewardSizeULorMS        = 100;
-   %case 'gcam44lt'
-    %    requestRewardSizeULorMS = 0;
-     %   rewardSizeULorMS        = 100;
+ 
 
        
     otherwise
@@ -105,14 +80,12 @@ stim.gain = 0.7 * ones(2,1);
 stim.targetDistance = 500 * ones(1,2);
 stim.timeoutSecs = 10;
 stim.slow = [40; 80]; % 10 * ones(2,1);
-stim.slowSecs = 1;
+%stim.slowSecs = 1;  set above for individual changes
 stim.positional = false;
 stim.cue = true;
 stim.soundClue = false;
 
-pixPerCycs             = [100]; %*10^9;
-targetOrientations     = 0
-distractorOrientations = []; %-targetOrientations;
+
 mean                   = .5;
 radius                 = .35;
 contrast               = 1;
@@ -125,16 +98,6 @@ axis                   = pi/2;
 
 
 
-
-
-% s = orientedGabors([pixPerCycs],[targetOrientations],[distractorOrientations],mean,radius,contrasts,thresh,normalizedPosition,maxWidth,maxHeight,scaleFactor,interTrialLuminance,[waveform],[normalizedSizeMethod],[axis])
-% orientations in radians
-% mean, contrasts, normalizedPosition (0 <= value <= 1)
-
-% stim.stim = orientedGabors(pixPerCycs,targetOrientations,distractorOrientations,mean,radius,contrast,thresh,yPosPct,maxWidth,maxHeight,zoom,interTrialLuminance);
-% ballSM = trail(stim,maxWidth,maxHeight,zoom,interTrialLuminance);
-%;
-% ts1 = trainingStep(ballTM, ballSM, repeatIndefinitely(), noTimeOff(), svnRev, svnCheckMode); %ball
 
 %%% abstract orientation (e.g. 0 = go left, pi/2 = go right)
 targetOrientations = 0;

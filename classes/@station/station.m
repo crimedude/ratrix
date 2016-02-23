@@ -1,5 +1,5 @@
 function s=station(varargin)
-	% STATION  class constructor.
+    % STATION  class constructor.
 	% s = station(stationSpec)
 	%
 	% stationSpec.id
@@ -28,6 +28,15 @@ function s=station(varargin)
 	% stationSpec.datanet
 	% stationSpec.eyeTracker
 
+    s.ptbVersion    = [];
+    s.screenVersion = [];
+    s.skipSyncTests = [];
+    s.matlabVersion = [];
+    s.matlab64      = [];
+    s.win64         = [];
+    s.computer      = [];
+    s.diary         = []; 
+    
 	s.id=0;
 	s.path='';
 	s.screenNum=0;
@@ -38,7 +47,8 @@ function s=station(varargin)
 	s.numPorts=0;
 
 	s.responseMethod='';
-	s.decPPortAddr='';
+	s.decPPortAddr=hex2dec('E030');
+    %s.decPPortAddr='';
 	s.valvePins=[];
 	s.sensorPins=[];
 	s.framePins=[];
@@ -249,7 +259,8 @@ function s=station(varargin)
 		end
 
 		s = class(s,'station');
-	end
+    end
+
 end
 
 function [out assignedSoFar]=assignPins(pins,dir,baseAddr,dontMatch,pinGroupName)

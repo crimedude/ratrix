@@ -11,13 +11,20 @@ end
 sm=makeStandardSoundManager();
 
 rewardSizeULorMS          =80;
+<<<<<<< HEAD
 requestRewardSizeULorMS   =20;
+=======
+requestRewardSizeULorMS   =5;
+>>>>>>> JLS
 requestMode               ='first';
-msPenalty                 =3500;
+msPenalty                 =3500;     %consider changing this also in future
 fractionOpenTimeSoundIsOn =1;
 fractionPenaltySoundIsOn  =1;
 scalar                    =1;
 msAirpuff                 =msPenalty;
+radius                 = .35;
+pixPerCycs                = [200];
+percentCorrectionTrials = .5;
 
 % sca
 % keyboard
@@ -26,59 +33,237 @@ if ~isscalar(subjIDs)
     error('expecting exactly one subject')
 end
 switch subjIDs{1}
-   case 'gcam33lt'
-        requestRewardSizeULorMS = 0;
-        rewardSizeULorMS        = 70;
-%    case 'sg4lt'
-%          requestRewardSizeULorMS = 0;
-%          rewardSizeULorMS        = 100;
-   case 'gcam17rn'
-        requestRewardSizeULorMS = 0;
-        rewardSizeULorMS        = 30;
-   case 'gcam21rt'
-        requestRewardSizeULorMS = 0;
-        rewardSizeULorMS        = 60;
-   case 'wg4rt'
-        requestRewardSizeULorMS = 0; 
-   case 'gcam30lt'
-        requestRewardSizeULorMS = 0;
-        rewardSizeULorMS        = 80;
-   case 'gcam30rn'
-        requestRewardSizeULorMS = 0;
-        rewardSizeULorMS        = 60;
-   case 'gcam35lt'
-        requestRewardSizeULorMS = 0;
-        rewardSizeULorMS        = 60;    
-%    case 'gcam39rt'
-%         requestRewardSizeULorMS = 0;
-%         rewardSizeULorMS        = 100;
-   case 'gcam39tt'
-        requestRewardSizeULorMS = 0;
-        rewardSizeULorMS        = 50; 
-   case 'gcam40lt'
-        requestRewardSizeULorMS = 0;
-        rewardSizeULorMS        = 60;
-   case 'gcam44lt'
-        requestRewardSizeULorMS = 0;
-        rewardSizeULorMS        = 45;
-   case 'gcam45tt'
-        requestRewardSizeULorMS = 0;
-        rewardSizeULorMS        = 35;
-   case 'gcam53ln'
-        requestRewardSizeULorMS = 0;
-        rewardSizeULorMS        = 45; 
-   case 'g54a11rt'
-        requestRewardSizeULorMS = 0;
-        rewardSizeULorMS        = 80;   
-   case 'g54a11tt'
-        requestRewardSizeULorMS = 0;
-        rewardSizeULorMS        = 60;     
-   case 'gcam25rt'
-        requestRewardSizeULorMS = 0;
-        rewardSizeULorMS        = 70;
-   case 'bfly21rt'
-       requestRewardSizeULorMS = 5;
-       rewardSizeULorMS        = 80;
+    
+    
+    case 'testHvVcenter' % 
+       requestRewardSizeULorMS = 0;
+       rewardSizeULorMS        = 59;
+       msPenalty               =6300;
+    
+
+   case 'g62bb8tt' % Started 2/9/16  %started HvV_center 2/20/16
+       requestRewardSizeULorMS = 0;
+       rewardSizeULorMS        = 139;
+       msPenalty               =3500;
+       percentCorrectionTrials = .5;   
+       
+   case 'g62bb8rt' % Started 2/9/16  %started HvV_center 2/20/16
+       requestRewardSizeULorMS = 0;
+       rewardSizeULorMS        = 139;
+       msPenalty               =3500;
+       percentCorrectionTrials = .5;    
+       
+   case 'g62ee6lt' % Started 2/9/16  %started HvV_center 2/20/16
+       requestRewardSizeULorMS = 0;
+       rewardSizeULorMS        = 139;
+       msPenalty               =3500;
+       percentCorrectionTrials = .5;       
+
+   case 'g62hh4ln' % Started 2/9/16  %started HvV_center 2/20/16
+       requestRewardSizeULorMS = 0;
+       rewardSizeULorMS        = 139;
+       msPenalty               =3500;
+       percentCorrectionTrials = .5;       
+ 
+       
+    case 'g62tx2.11lt' % Started 2/9/16 %started HvV_center 2/20/16
+       requestRewardSizeULorMS = 0;
+       rewardSizeULorMS        = 139;
+       msPenalty               =3500;
+       percentCorrectionTrials = .5;         
+       
+%     case 'g62tx2.3ln' % Started 10/24/15 %%Start hvv center 11/5/15
+%        requestRewardSizeULorMS = 0;
+%        rewardSizeULorMS        = 107;
+%        msPenalty               =3500;
+%        percentCorrectionTrials = .50; 
+       
+%     case 'g62t6lt' % Started 9/18/15 %%started hvv center 10/13/15
+%        requestRewardSizeULorMS = 0;
+%        rewardSizeULorMS        = 107;
+%        msPenalty               =3500;
+%        percentCorrectionTrials = .50;
+%        pixPerCycs                = [200];
+       
+%     case 'pvchr14ln' % Started 8/25/15 %%started hvv center 9/15/15
+%        requestRewardSizeULorMS = 0;
+%        rewardSizeULorMS        = 59;
+%        msPenalty               =6500;
+%        percentCorrectionTrials = .50; 
+%        stim.slowSecs = 2;
+%        
+%     case 'pvchr14rn' % Started 8/25/15 %%started hvv center 9/15/15
+%        requestRewardSizeULorMS = 0;
+%        rewardSizeULorMS        = 43;
+%        msPenalty               =6500;
+%        percentCorrectionTrials = .50; 
+%        stim.slowSecs = 2;
+% 
+%        
+%     case 'pvchr14rt' % Started 8/25/15 %%switched to center 9/11/15
+%        requestRewardSizeULorMS = 0;
+%        rewardSizeULorMS        = 27;
+%        msPenalty               =5500;
+%        percentCorrectionTrials = .50; 
+%        stim.slowSecs = 1.5;
+%        
+%     case 'pvchr14tt' % Started 8/25/15 %%switched to center 9/11/15
+%        requestRewardSizeULorMS = 0;
+%        rewardSizeULorMS        = 43;
+%        msPenalty               =4500;
+%        percentCorrectionTrials = .50; 
+%        stim.slowSecs = 2;
+%        
+%     case 'pv8lt' % Started 6/25/15  (permenant record wont show till 6/26/15) %%started center 7/14/15
+%        requestRewardSizeULorMS = 00;
+%        rewardSizeULorMS        = 59;
+%        msPenalty               =3500;
+%        percentCorrectionTrials = .5;
+%        stim.slowSecs = 1;
+%     
+%     case 'pv8nt' % Started 6/25/15  (permenant record wont show till 6/26/15) %%started center 7/14/15
+%        requestRewardSizeULorMS = 00;
+%        rewardSizeULorMS        = 59;
+%        msPenalty               =3500;
+%        percentCorrectionTrials = .5;
+%        stim.slowSecs = 1;
+%        
+%               
+%      case 'g62a2nn' % Started 6/25/15 (permenant record wont show till 6/26/15) %%Started hvv 7/14/15 %%started gotoblack 8/11/15
+%        requestRewardSizeULorMS = 00;
+%        rewardSizeULorMS        = 59;
+%        msPenalty               =3500;
+%        percentCorrectionTrials = .5;
+%        
+%        
+%       case 'g62a3tt' % Started 6/25/15 %% started hvv 7/17/15 %%started gotoblack again 8/11/15
+%        requestRewardSizeULorMS = 0;
+%        rewardSizeULorMS        = 59;
+%        msPenalty               =3500;
+%        percentCorrectionTrials = .5;
+%        
+%       case 'g62a5nn' % Started 5/15/15 %% back to hvv 7/25/15 %%backtogloblack 8/11/15 %%%switch 100 sf 10/12/15
+%        requestRewardSizeULorMS = 0;
+%        rewardSizeULorMS        = 43;
+%        msPenalty               =3500;
+%        percentCorrectionTrials = .50;
+%        pixPerCycs                = [100];
+%        
+%       case 'g62n7ln' % Started 7/14/15 %%switch center 8/12/15 %%%switch 100 sf 10/12/15
+%        requestRewardSizeULorMS = 00;
+%        rewardSizeULorMS        = 43;
+%        msPenalty               =3500;
+%        percentCorrectionTrials = .5;
+%        pixPerCycs                = [100];
+%        
+%  
+%     case 'g62n7ln' % Started 7/14/15
+%        requestRewardSizeULorMS = 00;
+%        rewardSizeULorMS        = 16;
+%        msPenalty               =3500;
+%        percentCorrectionTrials = .5;
+    
+   
+
+       
+%     case 'pv8lt' % Started 6/25/15  (permenant record wont show till 
+%     6/26/15) %%started center 7/14/15 %%started gotblack 8-11-15
+%        requestRewardSizeULorMS = 00;
+%        rewardSizeULorMS        = 32;
+%        msPenalty               =3500;
+%        pixPerCycs              = [350];
+%        percentCorrectionTrials = .5;
+%        stim.slowSecs = 1;
+    
+%     case 'pv8nt' % Started 6/25/15  (permenant record wont show till
+%     6/26/15) %%started center 7/14/15 %%started gotblack 8-11-15
+%        requestRewardSizeULorMS = 00;
+%        rewardSizeULorMS        = 16;
+%        msPenalty               =3500;
+%        pixPerCycs              = [350];
+%        percentCorrectionTrials = .5;
+%        stim.slowSecs = 1;
+%        
+       
+%     case 'g62c.2rt'           %Switched Back _center 8/15/14
+%        requestRewardSizeULorMS = 0;
+%        rewardSizeULorMS        = 25; 
+% %        msPenalty               =4200;
+%        pixPerCycs             = [100 150 200]; %*10^9;
+    
+%     case 'g62j.5rt' % Switched full 10/9/14
+%        requestRewardSizeULorMS = 0;
+%        rewardSizeULorMS        = 45;
+%        msPenalty               =4300;
+%        
+%     case 'g62k.1rt' % Started 7/12/14
+%        requestRewardSizeULorMS = 00;
+%        rewardSizeULorMS        = 100;
+%        msPenalty               =4100;
+    
+%     case 'g62f.8lt' % Started  7/12/14
+%        requestRewardSizeULorMS = 00;
+%        rewardSizeULorMS        = 110;
+%        msPenalty               =4100;
+%     
+%     case 'g62g4lt'     %switched full 5/22/14 
+%        requestRewardSizeULorMS = 0;
+%        rewardSizeULorMS        = 30;
+%         msPenalty              =4200;
+%         pixPerCycs             = [100 125 150]; %*10^9;
+        
+%      case 'g62g.6lt' % Switched full 10/9/14
+%        requestRewardSizeULorMS = 00;
+%        rewardSizeULorMS        = 25;
+%        msPenalty               =4100;
+
+%         
+%    case 'g62b8tt'     %switched full 5/22/14  
+%        requestRewardSizeULorMS = 0;
+%        rewardSizeULorMS        = 30;
+%         msPenalty              =4100;
+    
+%        case 'g62h1tt'     %Switched Full 8/15/14
+%        requestRewardSizeULorMS = 0;
+%        rewardSizeULorMS        = 60;
+%         msPenalty              =4000;
+%         pixPerCycs             = [100 125 150]; %*10^9;
+        
+%        case 'g62h2lt'     %started 2/22/14  
+%        requestRewardSizeULorMS = 0;
+%        rewardSizeULorMS        = 95;
+%         msPenalty              =4300;
+        
+%        case 'g62b9tt'     %started 3/8/14  
+%        requestRewardSizeULorMS = 0;
+%        rewardSizeULorMS        = 80;
+%         msPenalty              =4100;
+    
+%        case 'g62h2tt'     %started 3/5/14
+%        requestRewardSizeULorMS = 0;
+%        rewardSizeULorMS        = 40;
+%         msPenalty              =4300;
+        
+%       case 'g62c.2rt'           %changed 1/30/14 
+%        requestRewardSizeULorMS = 0;
+%        rewardSizeULorMS        = 30; 
+%        msPenalty               =4100;
+
+%     case 'g62b7lt'           %switched full 8/14/14
+%        requestRewardSizeULorMS = 0;
+%        rewardSizeULorMS        = 25; 
+%        msPenalty               =4000;
+%        pixPerCycs             = [100 125 150]; %*10^9;
+%        
+%        case 'g6w5rt'     %started 2/17/14  
+%        requestRewardSizeULorMS = 0;
+%        rewardSizeULorMS        = 30;
+%         msPenalty              =4200;
+        
+
+    
+
+ 
        
     otherwise
         warning('unrecognized mouse, using defaults')
@@ -86,7 +271,7 @@ end
 
 noRequest = constantReinforcement(rewardSizeULorMS,requestRewardSizeULorMS,requestMode,msPenalty,fractionOpenTimeSoundIsOn,fractionPenaltySoundIsOn,scalar,msAirpuff);
 
-percentCorrectionTrials = .5;
+
 
 maxWidth  = 1920;
 maxHeight = 1080;
@@ -95,7 +280,7 @@ maxHeight = 1080;
 textureSize = 10*[w,h];
 zoom = [maxWidth maxHeight]./textureSize;
 
-svnRev = {'svn://132.239.158.177/projects/ratrix/trunk'};
+svnRev = {}; %{'svn://132.239.158.177/projects/ratrix/trunk'};
 svnCheckMode = 'session';
 
 interTrialLuminance = .5;
@@ -109,11 +294,9 @@ stim.positional = false;
 stim.cue = true;
 stim.soundClue = true;
 
-pixPerCycs             = [100]; %*10^9;
 targetOrientations     = 0
 distractorOrientations = []; %-targetOrientations;
 mean                   = .5;
-radius                 = .35;
 contrast               = 1;
 thresh                 = .00005;
 normalizedPosition      = [.5];
@@ -122,25 +305,29 @@ axis                   = pi/2;
 
 
 
-
-
-
-
-% s = orientedGabors([pixPerCycs],[targetOrientations],[distractorOrientations],mean,radius,contrasts,thresh,normalizedPosition,maxWidth,maxHeight,scaleFactor,interTrialLuminance,[waveform],[normalizedSizeMethod],[axis])
-% orientations in radians
-% mean, contrasts, normalizedPosition (0 <= value <= 1)
-
-% stim.stim = orientedGabors(pixPerCycs,targetOrientations,distractorOrientations,mean,radius,contrast,thresh,yPosPct,maxWidth,maxHeight,zoom,interTrialLuminance);
-% ballSM = trail(stim,maxWidth,maxHeight,zoom,interTrialLuminance);
-%;
-% ts1 = trainingStep(ballTM, ballSM, repeatIndefinitely(), noTimeOff(), svnRev, svnCheckMode); %ball
-
 %%% abstract orientation (e.g. 0 = go left, pi/2 = go right)
 targetOrientations = pi/2;
 distractorOrientations = 0;
 
+%for creating psychometric curves (contrast and orientation)
+% switch subjIDs{1}
+%         
+%      case 'g62c.2rt'           %set variable parameters
+%             contrast               = [.01, .05, .1, .25, .5, 1];
+% percentCorrectionTrials = .1;
+%         
+%      case 'g62b7lt'            %set variable parameters
+%    targetOrientations = [(-pi/4)+(pi/2),(-pi/8)+(pi/2),(-3*pi/16)+(pi/2), (-pi/16)+(pi/2), 0+(pi/2)];
+%    distractorOrientations = [0, (pi/16), (pi/8), (3*pi/16), (pi/4)];
+%    percentCorrectionTrials = .1;
+%     otherwise
+%         warning('unrecognized mouse, using defaults')
+% end
+
+
+
 stim.stim = orientedGabors(pixPerCycs,{distractorOrientations [] targetOrientations},'abstract',mean,radius,contrast,thresh,normalizedPosition,maxWidth,maxHeight,scaleFactor,interTrialLuminance,[],[],axis);
- ballSM = trail(stim,maxWidth,maxHeight,zoom,interTrialLuminance);
+
  ballTM = ball(percentCorrectionTrials,sm,noRequest);
  
  ballSM = setReinfAssocSecs(trail(stim,maxWidth,maxHeight,zoom,interTrialLuminance),1);

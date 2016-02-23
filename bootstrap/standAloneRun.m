@@ -97,7 +97,10 @@ if ~exist('subjectID','var') || isempty(subjectID)
         needToAddSubject=true;
     end
 else
-    subjectID=lower(subjectID);
+    if ~strcmp(subjectID,lower(subjectID))
+        error('must use all lower case for subject id''s')
+    end
+    subjectID=lower(subjectID); % edf can't remember why he thought this was a good idea, and can't think of any bad implications of removing it, but hasn't carefully verified + tested
     try
         isSubjectInRatrix=getSubjectFromID(rx,subjectID);
     catch ex
@@ -161,16 +164,39 @@ if ~justDoSetup
         else
             replicationPaths={getStandAlonePath(rx)};
         end
-        
+
         replicateTrialRecords(replicationPaths,deleteOnSuccess, recordInOracle,fileparts(getStandAlonePath(rx)));
         
         s=getSubjectFromID(rx,subjectID);
+        
+        try
+            % any advantage to doing this in ...\ratrix\classes\@station\doTrials.m ?
+            
+            tic
+            ssd = getSpreadsheetData; % takes 5 sec
+            [~,idx] = ismember(subjectID,{ssd.subject});
+            if ~isscalar(idx) || idx == 0
+                subjectID
+                {ssd.subject}
+                error('no unique matching subject id')
+            end
+            [s, rx] = setReinforcementParam(s,'rewardULorMS',ssd(idx).reward ,'all',rx,'','spreadsheet');
+            [s, rx] = setReinforcementParam(s,'msPenalty'   ,ssd(idx).timeout,'all',rx,'','spreadsheet');
+            toc
+        catch ex
+            warning('updating reinforcement params failed, continuing with values stored in ratrix db')
+            getReport(ex)            
+            
+            sca
+            keyboard
+        end
         
         [rx ids] = emptyAllBoxes(rx,'starting trials in standAloneRun',auth);
         boxIDs=getBoxIDs(rx);
         rx=putSubjectInBox(rx,subjectID,boxIDs(1),auth);
         b=getBoxIDForSubjectID(rx,getID(s));
         st=getStationsForBoxID(rx,b);
+
         %struct(st(1))
         rx=doTrials(st(1),rx,0,[],~recordInOracle); %0 means keep running trials til something stops you (quit, error, etc)
         [rx ids] = emptyAllBoxes(rx,'done running trials in standAloneRun',auth);

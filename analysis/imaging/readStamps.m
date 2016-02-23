@@ -2,7 +2,8 @@ function [t,drops] = readStamps(in)
 w = 6;
 h = 7;
 n = size(in,3);
-c = 50;
+%c = 50; %% too big for some images
+c=20;
 
 stamps = in(1:h,1:w*c,:);
 
@@ -36,7 +37,10 @@ if true
     
     t = 14;
     x = in(1,1:t,:);
-    f = dec2bin(x,16);
+    figure
+    imagesc(squeeze(in(1,:,:)))
+    f = dec2bin(x,16); 
+%    keyboard
     if any(any(f(:,1:8)~='0'))
         %for some reason saving pcoraws uses bits 7-14 instead of 9-16
         f = f(:,[15:16 1:14]);
@@ -49,9 +53,11 @@ if true
             imagesc(squeeze(x)')
             figure
             imagesc(squeeze(x)'>intmax('uint8'))
+            t = nan; drops=nan;
+            %%error('bad bcd')
+            display('bad bcd')
             
-            keyboard
-            error('bad bcd')
+            return
         end
     end
     x = reshape([bin2dec(f(:,9:12)) bin2dec(f(:,13:16))]*10.^[1 0]',[t n])';
@@ -59,6 +65,10 @@ if true
     
     drops = x(:,1:4)*10.^(2*(3 : -1 : 0))';
 end
+
+%%% no need to do ascii? and it doesn't work on small images
+t=bSecs;
+return;
 
 if false
     figure

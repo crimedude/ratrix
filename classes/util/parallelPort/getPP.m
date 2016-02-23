@@ -18,7 +18,7 @@ persistent matlab64;
 persistent win64;
 persistent b64;
 
-if any(cellfun(@isempty,{matlab64 win64 b64}))
+if isempty(matlab64) || isempty(win64) || isempty(b64) % slower: any(cellfun(@isempty,{matlab64 win64 b64}))
     
     matlab64 = false;
     win64 = false;
@@ -88,9 +88,14 @@ if any(cellfun(@isempty,{matlab64 win64 b64}))
         
         %temporary hack to get 2p station running
         if ppOut && win64
-            if ~matlab64
-                b64 = io32;
+            if matlab64 | ~matlab64
+               try
+                   b64 = io32;
                 status = io32(b64);
+               catch
+                    b64 = io64;
+                status = io64(b64);
+               end
                 if status~=0
                     status
                     'driver installation not successful'

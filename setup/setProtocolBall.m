@@ -11,7 +11,7 @@ end
 
 sm=makeStandardSoundManager();
 
-rewardSizeULorMS          =80;
+rewardSizeULorMS          =100;
 requestRewardSizeULorMS   =30;
 requestMode               ='first';
 msPenalty                 =1000;
@@ -26,8 +26,26 @@ switch subjIDs{1}
        rewardSizeULorMS        = 80;
    case 'bfly24lt'
        requestRewardSizeULorMS = 20;
-       rewardSizeULorMS        = 80;     
-      
+       rewardSizeULorMS        = 80;
+    case 'g625ln'
+       requestRewardSizeULorMS = 20;
+       rewardSizeULorMS        = 80;   
+    case 'gcam40lt'  
+        requestRewardSizeULorMS = 0;
+        rewardSizeULorMS        = 60;
+    case 'g54a11tt'   
+        requestRewardSizeULorMS = 0;
+        rewardSizeULorMS        = 80; 
+    case 'gcam53ln'
+        requestRewardSizeULorMS = 0;
+        rewardSizeULorMS        = 60;    
+    case 'gcam50lt'
+        requestRewardSizeULorMS = 0;
+        rewardSizeULorMS        = 60;
+        
+    otherwise
+        warning('unrecognized mouse, using defaults')
+end     
 
 
 noRequest = constantReinforcement(rewardSizeULorMS,requestRewardSizeULorMS,requestMode,msPenalty,fractionOpenTimeSoundIsOn,fractionPenaltySoundIsOn,scalar,msAirpuff);
@@ -47,8 +65,13 @@ svnCheckMode = 'session';
 interTrialLuminance = .5;
 
 stim.gain = .7 * ones(2,1);
+<<<<<<< HEAD
 stim.targetDistance = 400 * ones(1,2);
 stim.timeoutSecs = .5;
+=======
+stim.targetDistance = 450 * ones(1,2);
+stim.timeoutSecs = 5;
+>>>>>>> JLS
 stim.slow = [40; 80]; % 10 * ones(2,1);
 stim.slowSecs = 1;
 stim.positional = false;

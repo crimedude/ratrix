@@ -10,14 +10,17 @@ end
 
 sm=makeStandardSoundManager();
 
-rewardSizeULorMS          =80;
+rewardSizeULorMS          =20;
 requestRewardSizeULorMS   =0;
 requestMode               ='first';
-msPenalty                 =3500;
+msPenalty                 =3500;         
 fractionOpenTimeSoundIsOn =1;
 fractionPenaltySoundIsOn  =1;
 scalar                    =1;
-msAirpuff                 =msPenalty;
+msAirpuff                 =0;
+pixPerCycs                = [100 150 200]; %*10^9;
+percentCorrectionTrials = .5;
+normalizedPosition      = [0.33 0.66];
 
 % sca
 % keyboard
@@ -27,16 +30,99 @@ if ~isscalar(subjIDs)
 end
  switch subjIDs{1}
 
-   case 'gcam30lt'
-        requestRewardSizeULorMS = 0;
-          rewardSizeULorMS        =60;
+    case 'g62t6lt' % Started 9/18/15 %%started hvv center 10/13/15 %started hvv full 11/24/15
+       requestRewardSizeULorMS = 0;
+       rewardSizeULorMS        = 107;
+       msPenalty               =3500;
+       percentCorrectionTrials = .50;
+       pixPerCycs                = [200];
+     
+     case 'testpixhvv' % Started 5/18/15
+       requestRewardSizeULorMS = 0;
+       rewardSizeULorMS        = 60;
+       msPenalty               =3000;
+       pixPerCycs              = [400];
+       percentCorrectionTrials = .5;
+       
+%      case 'g62t5rt' % Started 9/11/15 %%started full 9/28/15
+%        requestRewardSizeULorMS = 0;
+%        rewardSizeULorMS        = 107;
+%        msPenalty               =3500;
+%        percentCorrectionTrials = .50; 
+%        
+%        
+%      case 'g62a3tt' % Started 6/25/15 %% started hvv 7/17/15 %%started gotoblack again 8/11/15 %%%started full 9-18-15
+%        requestRewardSizeULorMS = 0;
+%        rewardSizeULorMS        = 59;
+%        msPenalty               =3500;
+%        percentCorrectionTrials = .5;
+%        
+%      case 'g62a4tt' % Started 5/14/15 %% back to hvv 7/25/15
+%        requestRewardSizeULorMS = 0;
+%        rewardSizeULorMS        = 43;
+%        msPenalty               =3500;
+%        percentCorrectionTrials = .50; 
+       
+%      case 'g62a5nn' % Started 5/15/15 %% back to hvv 7/25/15
+%        requestRewardSizeULorMS = 0;
+%        rewardSizeULorMS        = 16;
+%        msPenalty               =3500;
+%        percentCorrectionTrials = .50;
+       
+%      case 'g62w2rt' % Started 7/2/15 %%started HvV 7/23/15
+%        requestRewardSizeULorMS = 0;
+%        rewardSizeULorMS        = 48;
+%        msPenalty               =4000;
+%         pixPerCycs             = [350];
+%        percentCorrectionTrials = .0;
+%        
+%      case 'g62a3tt' % Started 6/25/15 %% started hvv 7/17/15
+%        requestRewardSizeULorMS = 0;
+%        rewardSizeULorMS        = 32;
+%        msPenalty               =4000;
+%        pixPerCycs              = [350];
+%        percentCorrectionTrials = .25;
+%        
+%      case 'g62a2nn' % Started 6/25/15 (permenant record wont show till 6/26/15) %%Started hvv 7/14/15
+%        requestRewardSizeULorMS = 00;
+%        rewardSizeULorMS        = 32;
+%        msPenalty               =3500;
+%        percentCorrectionTrials = .5;
+%      
+%      case 'g62r3rt' % Started 5/18/15
+%        requestRewardSizeULorMS = 0;
+%        rewardSizeULorMS        = 32;
+%        msPenalty               =3500;
+%        percentCorrectionTrials = .5;
+     
+%      case 'g62a5nn' % Started 5/15/15
+%        requestRewardSizeULorMS = 0;
+%        rewardSizeULorMS        = 32;
+%        msPenalty               =3500;
+%        percentCorrectionTrials = .50;
+     
+%      case 'g62a4tt' % Started 5/14/15
+%        requestRewardSizeULorMS = 0;
+%        rewardSizeULorMS        = 16;
+%        msPenalty               =3500;
+%        percentCorrectionTrials = .50;
+     
+%      case 'g62l8rn'     %Started from Go To Black 3/8/15
+%        requestRewardSizeULorMS = 0;
+%        rewardSizeULorMS        = 25;
+%        msPenalty               = 3500;
+%        percentCorrectionTrials = .50;
+  
+        
 
+           
        
     otherwise
         warning('unrecognized mouse, using defaults')
 end
 
 noRequest = constantReinforcement(rewardSizeULorMS,requestRewardSizeULorMS,requestMode,msPenalty,fractionOpenTimeSoundIsOn,fractionPenaltySoundIsOn,scalar,msAirpuff);
+
 
 percentCorrectionTrials = .5;
 
@@ -47,7 +133,7 @@ maxHeight = 1080;
 textureSize = 10*[w,h];
 zoom = [maxWidth maxHeight]./textureSize;
 
-svnRev = {'svn://132.239.158.177/projects/ratrix/trunk'};
+svnRev = {}; %{'svn://132.239.158.177/projects/ratrix/trunk'};
 svnCheckMode = 'session';
 
 interTrialLuminance = .5;
@@ -61,38 +147,44 @@ stim.positional = false;
 stim.cue = true;
 stim.soundClue = true;
 
-pixPerCycs             = [100]; %*10^9;
 targetOrientations     = 0
 distractorOrientations = []; %-targetOrientations;
 mean                   = .5;
-radius                 = .35;
+radius                 = .25;
 contrast               = 1;
 thresh                 = .00005;
-normalizedPosition      = [0.25 0.75];
 scaleFactor            = 0; %[1 1];
 axis                   = pi/2;
 
 
 
 
-
-
-
-% s = orientedGabors([pixPerCycs],[targetOrientations],[distractorOrientations],mean,radius,contrasts,thresh,normalizedPosition,maxWidth,maxHeight,scaleFactor,interTrialLuminance,[waveform],[normalizedSizeMethod],[axis])
-% orientations in radians
-% mean, contrasts, normalizedPosition (0 <= value <= 1)
-
-% stim.stim = orientedGabors(pixPerCycs,targetOrientations,distractorOrientations,mean,radius,contrast,thresh,yPosPct,maxWidth,maxHeight,zoom,interTrialLuminance);
-% ballSM = trail(stim,maxWidth,maxHeight,zoom,interTrialLuminance);
-%;
-% ts1 = trainingStep(ballTM, ballSM, repeatIndefinitely(), noTimeOff(), svnRev, svnCheckMode); %ball
-
 %%% abstract orientation (e.g. 0 = go left, pi/2 = go right)
 targetOrientations = pi/2;
 distractorOrientations = 0;
 
+
+% %for creating psychometric curves (contrast and orientation
+% switch subjIDs{1}
+%         
+%       case 'g62b1lt'     %set variable parameters 
+%             contrast               = [.01, .05, .1, .25, .5, 1];
+% percentCorrectionTrials = .1;
+%         
+%        case 'g62b3rt'           %set variable parameters 
+%    %targetOrientations = [(-pi/4)+pi/2,(-pi/8)+pi/2, (-pi/16)+pi/2, 0+pi/2, (pi/16)+pi/2, (pi/8)+pi/2, (pi/4)+pi/2];
+%       targetOrientations = [(-pi/4)+(pi/2),(-pi/8)+(pi/2),(-3*pi/16)+(pi/2), (-pi/16)+(pi/2), 0+(pi/2)];
+%    distractorOrientations = [0, (pi/16), (pi/8), (3*pi/16), (pi/4)];
+%    %distractorOrientations = [(-pi/4),(-pi/8), (-pi/16), 0, (pi/16), (pi/8), (pi/4)];
+%    percentCorrectionTrials = .1;
+%     otherwise
+%         warning('unrecognized mouse, using defaults')
+% end
+
+
+
 stim.stim = orientedGabors(pixPerCycs,{distractorOrientations [] targetOrientations},'abstract',mean,radius,contrast,thresh,normalizedPosition,maxWidth,maxHeight,scaleFactor,interTrialLuminance,[],[],axis);
- ballSM = trail(stim,maxWidth,maxHeight,zoom,interTrialLuminance);
+%  ballSM = trail(stim,maxWidth,maxHeight,zoom,interTrialLuminance);
  ballTM = ball(percentCorrectionTrials,sm,noRequest);
  
  ballSM = setReinfAssocSecs(trail(stim,maxWidth,maxHeight,zoom,interTrialLuminance),1);
