@@ -66,7 +66,6 @@ ampsdB=60; %requested amps in dB
 amplitude=10.^((ampsdB -maxSPL)/20); %amplitudes = line level, 0 to 1
 soundParams.amp = amplitude; %for intensityDisrim
 
-speechStim = speechDiscrim(interTrialLuminance,soundParams,maxWidth,maxHeight,scaleFactor,interTrialLuminance);
 
 
 requestRewardSizeULorMS = 0;
@@ -80,7 +79,13 @@ svnCheckMode='session';
 trialsPerMinute = 7;
 minutes = .5;
 numTriggers = 20;
+%create easy speechstim 
+speechStim = speechDiscrim(interTrialLuminance,soundParams,maxWidth,maxHeight,scaleFactor,interTrialLuminance);
+
 ts1 = trainingStep(fd,  speechStim, rateCriterion(trialsPerMinute,minutes), noTimeOff(), svnRev,svnCheckMode);  %stochastic free drinks
+
+%create harder speechstim 
+speechStim = speechDiscrim(interTrialLuminance,soundParams,maxWidth,maxHeight,scaleFactor,interTrialLuminance);
 ts2 = trainingStep(fd2, speechStim, numTrialsDoneCriterion(numTriggers)   , noTimeOff(), svnRev,svnCheckMode);  %free drinks
 
 %nafc
